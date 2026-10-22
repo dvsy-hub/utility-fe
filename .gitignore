@@ -1,0 +1,23 @@
+# Dependencies (pnpm only — an npm lockfile must not sneak back in)
+node_modules
+package-lock.json
+
+# Next.js / build output
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+coverage
+.vitest
+
+# Generated from openapi/openapi.json on install (pnpm api:generate)
+src/shared/api/schema.d.ts
+
+# Local env files may contain a copied initData (personal data + signature) — never commit them
+.env
+.env.local
+.env.*.local
+
+# OS / editors
+.DS_Store
+.idea

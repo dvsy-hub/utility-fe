@@ -1,0 +1,22 @@
+# pnpm settings. Since pnpm 11 all non-auth settings live here (the `pnpm` field in package.json is ignored).
+# No `packages` key: this is a single-package project.
+
+peerDependencyRules:
+  allowedVersions:
+    # openapi-typescript@7.13 declares `typescript: ^5.x`. Here `typescript` is the TS 6.0 API package
+    # (see package.json and docs/architecture.md), which provides everything it uses.
+    'openapi-typescript>typescript': '6'
+    # Plugins bundled by eslint-config-next still declare eslint <=9; eslint-config-next 16.4 supports ESLint 10
+    # and wraps them with fixupPluginRules.
+    'eslint-plugin-react>eslint': '10'
+    'eslint-plugin-import>eslint': '10'
+    'eslint-plugin-jsx-a11y>eslint': '10'
+
+# Dependency install scripts are blocked unless reviewed (strictDepBuilds fails the install otherwise).
+# Both ship prebuilt binaries; their scripts are only fallbacks.
+allowBuilds:
+  unrs-resolver: false # native resolver via @unrs/resolver-binding-* optional deps
+  fsevents: false # macOS only (optional dep of vite); prebuilt fsevents.node
+
+minimumReleaseAgeExclude:
+  - postcss@8.5.31

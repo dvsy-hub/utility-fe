@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+coverage
+.vitest
+*.tsbuildinfo
+next-env.d.ts
+package-lock.json
+.git
+.github
+.idea
+.env
+.env.*
+!.env.example
+src/shared/api/schema.d.ts

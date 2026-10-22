@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* `.dark` on <html> is set from Telegram.WebApp.colorScheme (src/telegram/theme.ts). */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-link: var(--link);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+ * shadcn/ui tokens mapped onto the Telegram theme.
+ *
+ * telegram-web-app.js writes the user's theme as --tg-theme-* variables on <html> and updates them
+ * on `themeChanged`, so every shadcn component follows the exact Telegram palette. The second
+ * argument of each var() is the stock shadcn "neutral" value, used outside Telegram or when the
+ * client omits a color. Telegram has no equivalent for charts/sidebar, so those stay shadcn's.
+ */
+:root {
+  color-scheme: light;
+  --radius: 0.75rem;
+
+  --background: var(--tg-theme-bg-color, oklch(1 0 0));
+  --foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
+  --card: var(--tg-theme-section-bg-color, var(--tg-theme-bg-color, oklch(1 0 0)));
+  --card-foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
+  --popover: var(--tg-theme-bg-color, oklch(1 0 0));
+  --popover-foreground: var(--tg-theme-text-color, oklch(0.145 0 0));
+  --primary: var(--tg-theme-button-color, oklch(0.205 0 0));
+  --primary-foreground: var(--tg-theme-button-text-color, oklch(0.985 0 0));
+  --secondary: var(--tg-theme-secondary-bg-color, oklch(0.97 0 0));
+  --secondary-foreground: var(--tg-theme-text-color, oklch(0.205 0 0));
+  --muted: var(--tg-theme-secondary-bg-color, oklch(0.97 0 0));
+  --muted-foreground: var(--tg-theme-hint-color, oklch(0.556 0 0));
+  --accent: var(--tg-theme-secondary-bg-color, oklch(0.97 0 0));
+  --accent-foreground: var(--tg-theme-accent-text-color, var(--tg-theme-text-color, oklch(0.205 0 0)));
+  --destructive: var(--tg-theme-destructive-text-color, oklch(0.577 0.245 27.325));
+  --border: var(--tg-theme-section-separator-color, oklch(0.922 0 0));
+  --input: var(--tg-theme-section-separator-color, oklch(0.922 0 0));
+  --ring: var(--tg-theme-button-color, oklch(0.708 0 0));
+  --link: var(--tg-theme-link-color, oklch(0.546 0.245 262.881));
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Telegram container: device safe areas + Telegram's own header/controls (Bot API 8.0+). */
+  --inset-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
+  --inset-bottom: calc(var(--tg-safe-area-inset-bottom, 0px) + var(--tg-content-safe-area-inset-bottom, 0px));
+  --inset-left: calc(var(--tg-safe-area-inset-left, 0px) + var(--tg-content-safe-area-inset-left, 0px));
+  --inset-right: calc(var(--tg-safe-area-inset-right, 0px) + var(--tg-content-safe-area-inset-right, 0px));
+  /* Stable height excludes the keyboard and the expanding sheet animation. */
+  --app-height: var(--tg-viewport-stable-height, 100dvh);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: var(--tg-theme-bg-color, oklch(0.145 0 0));
+  --foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
+  --card: var(--tg-theme-section-bg-color, var(--tg-theme-bg-color, oklch(0.205 0 0)));
+  --card-foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
+  --popover: var(--tg-theme-bg-color, oklch(0.205 0 0));
+  --popover-foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
+  --primary: var(--tg-theme-button-color, oklch(0.922 0 0));
+  --primary-foreground: var(--tg-theme-button-text-color, oklch(0.205 0 0));
+  --secondary: var(--tg-theme-secondary-bg-color, oklch(0.269 0 0));
+  --secondary-foreground: var(--tg-theme-text-color, oklch(0.985 0 0));
+  --muted: var(--tg-theme-secondary-bg-color, oklch(0.269 0 0));
+  --muted-foreground: var(--tg-theme-hint-color, oklch(0.708 0 0));
+  --accent: var(--tg-theme-secondary-bg-color, oklch(0.269 0 0));
+  --accent-foreground: var(--tg-theme-accent-text-color, var(--tg-theme-text-color, oklch(0.985 0 0)));
+  --destructive: var(--tg-theme-destructive-text-color, oklch(0.704 0.191 22.216));
+  --border: var(--tg-theme-section-separator-color, oklch(1 0 0 / 10%));
+  --input: var(--tg-theme-section-separator-color, oklch(1 0 0 / 15%));
+  --ring: var(--tg-theme-button-color, oklch(0.556 0 0));
+  --link: var(--tg-theme-link-color, oklch(0.707 0.165 254.624));
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* Full-height screen that respects Telegram safe areas. */
+@utility tg-screen {
+  min-height: var(--app-height);
+  padding: calc(var(--inset-top) + --spacing(6)) calc(var(--inset-right) + --spacing(4))
+    calc(var(--inset-bottom) + --spacing(6)) calc(var(--inset-left) + --spacing(4));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+  }
+  body {
+    @apply min-h-(--app-height) bg-background text-foreground antialiased;
+  }
+  a {
+    @apply text-link;
+  }
+}

@@ -1,0 +1,10 @@
+.next
+out
+coverage
+.vitest
+package-lock.json
+node_modules
+pnpm-lock.yaml
+next-env.d.ts
+openapi/openapi.json
+src/shared/api/schema.d.ts
